@@ -28,7 +28,10 @@ Array *create_array (int capacity) {
   arr->count = 0;
 
   // Allocate memory for elements
-  arr->elements = malloc( sizeof(char *) * capacity);
+  char **elements = malloc(sizeof(char**) * capacity);
+  arr->elements = elements;
+
+  return arr;
 }
 
 
@@ -75,10 +78,10 @@ void resize_array(Array *arr) {
  * Throw an error if the index is out of range.
  *****/
 char *arr_read(Array *arr, int index) {
-
+  printf("%d of count:%d\n", index, arr->count);
   // Throw an error if the index is greater than the current count
   if (index >= arr->count) {
-    fprintf(stderr, "IndexError: index out of bounds");
+    fprintf(stderr, "IndexError: index out of bounds\n");
     return NULL;
   }
 
@@ -111,9 +114,9 @@ void arr_append(Array *arr, char *element) {
 
   // Resize the array if the number of elements is over capacity
   // or throw an error if resize isn't implemented yet.
-  if (arr->capacity > (arr->count + 1)) {
+  if (arr->capacity < (arr->count + 1)) {
     printf("Resize array is not implemented");
-    return NULL;
+    return;
   }
 
   // Copy the element and add it to the end of the array
@@ -163,8 +166,11 @@ int main(void)
 
   Array *arr = create_array(1);
 
+  arr_read(arr, 0);
+  arr_print(arr);
   arr_insert(arr, "STRING1", 0);
   arr_append(arr, "STRING4");
+  arr_read(arr, 0);
   arr_insert(arr, "STRING2", 0);
   arr_insert(arr, "STRING3", 1);
   arr_print(arr);

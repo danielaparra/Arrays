@@ -1,20 +1,22 @@
-#include <arrays.h>
+#include "../arrays.h"
 #include "../utils/minunit.h"
 
 char *day_1_array_tests()
 {
     Array *arr = create_array(3);
-
     mu_assert(arr->count == 0, "Create failed");
     mu_assert(arr->capacity == 3, "Create failed");
-
+    printf("here3");
     mu_assert(arr_read(arr, 0) == NULL, "Value initialized not null");
 
     arr_append(arr, "VALUE-1");
 
     mu_assert(strcmp(arr_read(arr, 0), "VALUE-1") == 0, "Append value failed");
+    printf("here1");
     mu_assert(arr_read(arr, 1) == NULL, "Append value failed");
+    printf("here2");
     mu_assert(arr->count == 1, "Append value failed");
+    printf("here3");
 
     arr_append(arr, "VALUE-2");
 
