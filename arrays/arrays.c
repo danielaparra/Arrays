@@ -134,8 +134,7 @@ void arr_append(Array *arr, char *element) {
   // Resize the array if the number of elements is over capacity
   // or throw an error if resize isn't implemented yet.
   if (arr->capacity < (arr->count + 1)) {
-    printf("Resize array is not implemented");
-    return;
+    resize_array(arr);
   }
 
   // Copy the element and add it to the end of the array
