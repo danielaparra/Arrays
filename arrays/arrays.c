@@ -85,7 +85,6 @@ void resize_array(Array *arr) {
  * Throw an error if the index is out of range.
  *****/
 char *arr_read(Array *arr, int index) {
-  printf("%d of count:%d\n", index, arr->count);
   // Throw an error if the index is greater than the current count
   if (index >= arr->count) {
     fprintf(stderr, "IndexError: index out of bounds\n");
@@ -110,7 +109,7 @@ void arr_insert(Array *arr, char *element, int index) {
 
   // Resize the array if the number of elements is over capacity
   if(arr->count >= arr->capacity) {
-    // resize_array(arr);
+    resize_array(arr);
   }
 
   // Move every element after the insert index to the right one position
@@ -169,7 +168,7 @@ void arr_remove(Array *arr, char *element) {
   if (index < 0) {
     fprintf(stderr, "Value not found");
     return;
-  
+  }
 
   // Shift over every element after the removed element to the left one position
   for(int i = index; i < arr->count - 1; i++) {
